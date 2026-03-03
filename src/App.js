@@ -10,7 +10,7 @@ import Bookings from "./components/Bookings";
 import BookingDates from "./components/Context";
 import About from "./components/About";
 import FunctionHallDetails from "./components/FunctionHallDetails";
-import Scrap from "./scrap";
+import Contact from "./components/Contact";
 
 const function_halls = [
   {
@@ -108,6 +108,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/bookings" element={<Bookings />} /> 
           <Route path="/hall/:id" element={<FunctionHallDetails/>}/>        
+          <Route path="/contact" element={<Contact/>}/>
   
         </Routes>
       </BrowserRouter>
