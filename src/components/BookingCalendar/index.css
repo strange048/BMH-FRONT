@@ -1,91 +1,137 @@
-.booked-date {
-  background-color: red !important;
-  color: white !important;
-  border-radius: 6px;
-}
-
-
-.react-calendar {
-  width: 100% !important;
-  max-width: 300px;
-  overflow-x: hidden !important;
-}
-
-
-.close-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 4px 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 11px;
-}
-
-.top-calendar-container {
+/* =========================================
+   1. MAIN WRAPPER
+   Keeps the calendar anchored to the button
+========================================= */
+.calendar-wrapper {
+  position: relative; 
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 10px;
-  justify-content: space-between;
-  padding: 10px;
-
-
-  
-}
-
-.calendar-container {
-  border: 1px solid #ccc;
-    width: 300px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.select-date {
-  font-size: 15px !important;
-  font-weight: 400;
-  margin: 0px;
-  padding: 0px;
-}
-
-
-
-.calendar-image {
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
-  max-width: 300px;
-  height: auto;
-  display: block;
-   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
-    display: flex;
-    border-radius: 10px;
-  margin-bottom: 10px;
-  cursor: pointer;
-
 }
 
 .heading-calendar-main {
   font-size: 16px;
-  color: rgb(34, 105, 237);
-
-  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  margin-bottom: 8px;
+  font-weight: 600;
 }
 
-.calendar-image:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease-in-out;
-
+/* =========================================
+   2. TRIGGER BUTTON
+   The "Select Date" button that opens the calendar
+========================================= */
+.select-date-btn {
+  background-color: #f0f4f8; 
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 120px;
 }
 
-
-@media (max-width : 760px) {
-  .react-calendar {
-    max-width: 250px;
-  }
-
-  .calendar-container {
-
-    width: 250px;
-
+.select-date-btn:hover {
+  background-color: #e2e8f0;
+  border-color: #bbb;
 }
+
+/* =========================================
+   3. CALENDAR POPUP CONTAINER
+   Floats over the card content (Absolute Position)
+========================================= */
+.calendar-popup {
+  position: absolute;
+  bottom: -250%; /* Opens directly below the button */
+  right: -8%; /* Aligns to the right side of the container so it doesn't bleed off the left screen edge */
+  z-index: 9999; /* Forces it above other elements */
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2); 
+  width: 320px; 
+  margin-top: 8px; 
+}
+
+/* =========================================
+   4. POPUP HEADER (Title & Close Button)
+========================================= */
+.top-calendar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.select-date {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.close-button {
+  background: #ff4d4f;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.close-button:hover {
+  background: #d9363e;
+}
+
+/* =========================================
+   5. REACT-CALENDAR OVERRIDES
+   Forces the library to fit our container cleanly
+========================================= */
+.react-calendar {
+  width: 100% !important;
+  border: none !important;
+  font-family: inherit !important;
+}
+
+/* Removes the default blue background on the active (selected) tile */
+.react-calendar__tile--active {
+  background: #2563eb !important; /* Matches your blue 'Book Now' button */
+  color: white !important;
+  border-radius: 4px;
+}
+
+.react-calendar__tile--active:enabled:hover,
+.react-calendar__tile--active:enabled:focus {
+  background: #1d4ed8 !important;
+}
+
+/* =========================================
+   6. CUSTOM DATE STATES (Booked)
+========================================= */
+/* Style for dates that are already booked */
+.booked-date {
+  background-color: #ffeaea !important;
+  color: #ff4d4f !important;
+  text-decoration: line-through;
+  pointer-events: none; /* Prevents clicking */
+  border-radius: 4px;
+}
+
+/* Hover effect for available dates */
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background-color: #f0f4f8 !important;
+  border-radius: 4px;
 }

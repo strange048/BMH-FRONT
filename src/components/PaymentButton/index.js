@@ -1,79 +1,98 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import BookingDates from "../Context";
 
-function PaymentButton({ selectedDate, hallId }) {
-
-    const [payNow, setPayNow] = useState(false)
-
-    useEffect(() => {
-        const intervalId = setInterval(() => { setPayNow(!payNow); }, 1500);
-        return () => { clearInterval(intervalId); };
-    }, [payNow]);
+import { useNavigate } from "react-router-dom";
 
 
-    const handlePayment = async () => {
+function PaymentButton({ selectedDate, hallId,updatedDates,object }) {
+  const [payNow, setPayNow] = useState(false);
 
-        const amount = 1; // advance amount
+  const {bookedHalls,takeobject} = useContext(BookingDates)
+  const navigate = useNavigate();
 
-        // STEP 1 - Create Order
-        const response = await fetch("http://localhost:5000/create-order", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                amount,
-                date: selectedDate,
-                hallId,
-            }),
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setPayNow(!payNow);
+    }, 1500);
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [payNow]);
+
+  const handlePayment = async () => {
+    const amount = 1; // advance amount
+
+    // STEP 1 - Create Order
+    const response = await fetch("http://localhost:5000/create-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        amount,
+        date: selectedDate,
+        hallId,
+      }),
+    });
+
+    const order = await response.json();
+
+    // STEP 2 - Open Checkout
+    const options = {
+      key: "rzp_live_SLKsipeYfv1AJH",
+      amount: order.amount,
+      currency: "INR",
+      name: "Hall Booking",
+      description: "Advance Payment",
+      order_id: order.id,
+
+      handler: async function (response) {
+        // STEP 4 - Send data to backend
+        const verifyRes = await fetch("http://localhost:5000/verify-payment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(response),
         });
 
-        const order = await response.json();
+        const result = await verifyRes.json();
 
-        // STEP 2 - Open Checkout
-        const options = {
-            key: "rzp_live_SLKsipeYfv1AJH",
-            amount: order.amount,
-            currency: "INR",
-            name: "Hall Booking",
-            description: "Advance Payment",
-            order_id: order.id,
+        if (result.success) {
+          alert("Booking Confirmed 🎉");
+        
+        } else {
+          alert("Payment verification failed");
+        }
+      },
 
-            handler: async function (response) {
-
-                // STEP 4 - Send data to backend
-                const verifyRes = await fetch(
-                    "http://localhost:5000/verify-payment",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(response),
-                    }
-                );
-
-                const result = await verifyRes.json();
-
-                if (result.success) {
-                    alert("Booking Confirmed 🎉");
-                } else {
-                    alert("Payment verification failed");
-                }
-            },
-
-            theme: {
-                color: "#2B547E",
-            },
-        };
-
-        const rzp = new window.Razorpay(options);
-        rzp.open();
+      theme: {
+        color: "#2B547E",
+      },
     };
 
-    return (
-        <button onClick={handlePayment} className="button-book">{payNow ? "Book Now!" : <p className="card-text">Pay <span className='rupees'>₹5.00</span> Only</p>}</button>
-    );
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+  };
+  const bookDates = ()=>{
+    navigate("/bookings")
+    takeobject(object,selectedDate)
+  }
+
+  return (
+    <div>
+      <button onClick={handlePayment} className="button-book">
+        {payNow ? (
+          "Book Now!"
+        ) : (
+          <p className="card-text">
+            Pay <span className="rupees">₹5.00</span> Only
+          </p>
+        )}
+      </button>
+      <button onClick={bookDates}>SelectDate</button>
+    </div>
+  );
 }
 
 export default PaymentButton;
