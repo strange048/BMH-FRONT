@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar";
+import Footer from "../Footer";
 const About = () => {
   return (
     <div>
@@ -18,16 +19,22 @@ const About = () => {
             <div className="col-md-6">
               <h2 className="mb-4">About Us</h2>
               <p className="lead text-muted">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Our Mission: Making Space for Memories.
               </p>
               <p>
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est
-                laborum.
+                At BookMyHall, we believe that the process of planning an event
+                should be as joyful as the event itself. For too long, finding a
+                venue meant dealing with hidden prices, outdated photos, and
+                endless "call for availability" buttons. We decided to change
+                that. Born at the intersection of hospitality and technology,
+                BookMyHall was created to empower hosts. We provide a
+                transparent, digital marketplace where the perfect space—whether
+                it’s a cozy community hall or a sprawling luxury estate—is just
+                a click away. We know that behind every booking is a milestone—a
+                wedding, a first birthday, a corporate breakthrough, or a family
+                reunion. That’s why we vet every venue on our platform, ensuring
+                that what you see is exactly what you get. We handle the
+                logistics so you can focus on the guest list
               </p>
             </div>
           </div>
@@ -128,9 +135,11 @@ const About = () => {
                   <div className="card-body">
                     <div className="text-warning mb-2">★★★★★</div>
                     <p className="card-text">
-                      "Booking a hall for my sister's wedding was so stressful
-                      until I found book_my_hall. The interface is smooth, and
-                      we got a great deal on a premium venue."
+                      "I was overwhelmed trying to find a wedding venue until I
+                      downloaded BookMyHall. The virtual tours saved me weeks of
+                      driving around, and I locked in my dream date in under
+                      five minutes. Truly a lifesaver for anyone planning a big
+                      event!"
                     </p>
                     <h6 className="card-subtitle mt-3 text-muted">
                       - Sudheer S.
@@ -143,9 +152,11 @@ const About = () => {
                   <div className="card-body">
                     <div className="text-warning mb-2">★★★★★</div>
                     <p className="card-text">
-                      "Booking a hall for my sister's wedding was so stressful
-                      until I found book_my_hall. The interface is smooth, and
-                      we got a great deal on a premium venue."
+                      "Booking seminar spaces used to be a nightmare of
+                      back-and-forth emails. With this app, I compared three
+                      venues side-by-side and got an instant receipt for my
+                      company's accounts. It's the most professional booking
+                      tool I’ve used yet."
                     </p>
                     <h6 className="card-subtitle mt-3 text-muted">
                       - Younus S.
@@ -158,9 +169,11 @@ const About = () => {
                   <div className="card-body">
                     <div className="text-warning mb-2">★★★★★</div>
                     <p className="card-text">
-                      "Booking a hall for my sister's wedding was so stressful
-                      until I found book_my_hall. The interface is smooth, and
-                      we got a great deal on a premium venue."
+                      "I found a beautiful rooftop garden for my sister’s
+                      birthday that I never would have known existed otherwise.
+                      The filters helped me find a place within my budget that
+                      was also pet-friendly. Highly recommend for unique party
+                      spots!"
                     </p>
                     <h6 className="card-subtitle mt-3 text-muted">
                       - Ranveer K.
@@ -172,6 +185,7 @@ const About = () => {
           </div>
         </section>
       </div>
+      <Footer />
     </div>
   );
 };
