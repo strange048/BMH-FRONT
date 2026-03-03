@@ -8,7 +8,7 @@ import Login from "./components/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Bookings from "./components/Bookings";
 import BookingDates from "./components/Context";
-
+import About from "./components/About";
 const function_halls = [
   {
     id: 1,
@@ -102,6 +102,7 @@ function App() {
             element={<Home halls={halls} updatedDates={updatedDates} />}
           />
           <Route path="/login" element={<Login />} />
+          <Route path="/about" element={<About />} />
           <Route path="/bookings" element={<Bookings />} />         
         </Routes>
       </BrowserRouter>

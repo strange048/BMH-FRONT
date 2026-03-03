@@ -1,5 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -10,17 +12,27 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2 sticky-top">
       <div className="container">
-        
-        {/* Logo */}
-        <Link className="navbar-brand fw-bold text-primary" to="/">
-          Book My Hall
+        {/* Logo - Adjusted height for better mobile/desktop balance */}
+        <Link
+          className="navbar-brand fw-bold text-primary d-flex align-items-center"
+          to="/"
+        >
+          <img
+            src="https://res.cloudinary.com/dgzksmwpz/image/upload/v1772531480/Intertwined_Monogram_Logo_y7koz2.png"
+            alt="bookmyhall logo"
+            className="img-fluid"
+            style={{ 
+                height: "auto", 
+                maxHeight: "clamp(40px, 8vw, 60px)" // Responsive sizing: min 40px, max 60px
+            }}
+          />
         </Link>
 
-        {/* Hamburger - Visible only below lg */}
+        {/* Hamburger Menu */}
         <button
-          className="navbar-toggler d-lg-none"
+          className="navbar-toggler border-0 shadow-none" 
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -33,39 +45,33 @@ const Navbar = () => {
 
         {/* Menu Items */}
         <div
-          className="collapse navbar-collapse justify-content-end"
+          className="collapse navbar-collapse"
           id="navbarNav"
         >
-          <ul className="navbar-nav align-items-lg-center gap-lg-3 text-center">
-
+          {/* Using ms-auto to push nav items to the right */}
+          <ul className="navbar-nav ms-auto align-items-lg-center gap-lg-2 text-center py-3 py-lg-0">
             <li className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
+              <Link className="nav-link px-3" to="/">Home</Link>
             </li>
-
             <li className="nav-item">
-              <Link className="nav-link" to="/about">About</Link>
+              <Link className="nav-link px-3" to="/about">About</Link>
             </li>
-
             <li className="nav-item">
-              <Link className="nav-link" to="/services">Services</Link>
+              <Link className="nav-link px-3" to="/services">Services</Link>
             </li>
-
             <li className="nav-item">
-              <Link className="nav-link" to="/contact">Contact</Link>
+              <Link className="nav-link px-3" to="/contact">Contact</Link>
             </li>
-
-            <li className="nav-item">
+            <li className="nav-item ms-lg-3">
               <button
-                className="btn btn-primary ms-lg-3 mt-3 mt-lg-0"
+                className="btn btn-primary w-100 w-lg-auto mt-3 mt-lg-0 px-4"
                 onClick={onClickLogout}
               >
                 Logout
               </button>
             </li>
-
           </ul>
         </div>
-
       </div>
     </nav>
   );
