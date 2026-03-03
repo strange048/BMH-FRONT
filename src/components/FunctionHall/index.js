@@ -1,5 +1,6 @@
 import BookingCalendar from "../BookingCalendar";
 import PaymentButton from "../PaymentButton";
+import { Link } from "react-router-dom";
 import "./index.css";
 import { useState, useEffect } from "react";
 import { FaMapMarkerAlt, FaUsers, FaStar } from "react-icons/fa";
@@ -100,18 +101,26 @@ const FunctionHall = (props) => {
 
               {/* Calendar */}
               <div className="col-12 col-md-4 mb-3 mb-md-0">
-                <BookingCalendar
-                  id={id}
-                  bookedDates={bookedDates}
-                  updatedDates={updatedDates}
-                />
+                <div className="text-muted">Check Availability</div>
+                <div className="fw-bold" style={{ fontSize: "32px" }}>
+                  <Link to={`/hall/${id}`} className="text-decoration-none">
+                    <button className="btn btn-secondary w-100 w-md-auto px-4 py-2 ">
+                      Select Date
+                    </button>
+                  </Link>
+                </div>
               </div>
 
               {/* Button */}
-              <div className="col-12 col-md-4 text-md-end">
-                <button className="btn btn-primary w-100 w-md-auto px-4 py-3 selectBTN">
-                  Book Now
-                </button>
+              <div className="col-12 col-md-4 mb-3 mb-md-0">
+                <div className="text-muted">Book!</div>
+                <div className="fw-bold" style={{ fontSize: "32px" }}>
+                  <Link to={`/hall/${id}`} className="text-decoration-none">
+                    <button className="btn btn-primary w-100 w-md-auto px-4 py-2 ">
+                      Know More!
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

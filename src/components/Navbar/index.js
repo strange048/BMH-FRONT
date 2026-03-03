@@ -1,10 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
-// import Image from '../../assets/logo-restaurant.png'
-import "./index.css";
 
-const Navbar = (props) => {
+const Navbar = () => {
   const navigate = useNavigate();
 
   const onClickLogout = () => {
@@ -12,77 +9,63 @@ const Navbar = (props) => {
     navigate("/login", { replace: true });
   };
 
-
   return (
-    <nav className="nav-header">
-      <div className="nav-content">
-        <div className="nav-bar-mobile-logo-container">
-          <Link className="link header-logo-container" to="/">
-            <p className="swigato-2 home-logo d-md-none">Book My Hall</p>
-          </Link>
+    <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3">
+      <div className="container">
+        
+        {/* Logo */}
+        <Link className="navbar-brand fw-bold text-primary" to="/">
+          Book My Hall
+        </Link>
 
-          <button
-            type="button"
-            className="nav-mobile-btn"
-            onClick={onClickLogout}
-          >
-            <img
-              src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-log-out-img.png"
-              alt="nav logout"
-              className="nav-bar-img"
-            />
-          </button>
-        </div>
+        {/* Hamburger - Visible only below lg */}
+        <button
+          className="navbar-toggler d-lg-none"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-        <div className="nav-bar-large-container">
-          <Link className="link header-logo-container" to="/">
-            <p className="swigato-2 home-logo">Book My Hall</p>
-          </Link>
-          <ul className="nav-menu">
-            <li className="nav-menu-item">
-              <Link to="/" className="nav-link">
-                Home
-              </Link>
+        {/* Menu Items */}
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul className="navbar-nav align-items-lg-center gap-lg-3 text-center">
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/">Home</Link>
             </li>
 
-            <li className="nav-menu-item">
-              <Link to="/bookings" className="nav-link">
-                Bookings
-                {/* {renderCartItemsCount()} */}
-              </Link>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">About</Link>
             </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/services">Services</Link>
+            </li>
+
+            <li className="nav-item">
+              <Link className="nav-link" to="/contact">Contact</Link>
+            </li>
+
+            <li className="nav-item">
+              <button
+                className="btn btn-primary ms-lg-3 mt-3 mt-lg-0"
+                onClick={onClickLogout}
+              >
+                Logout
+              </button>
+            </li>
+
           </ul>
-          <button
-            type="button"
-            className="logout-desktop-btn"
-            onClick={onClickLogout}
-          >
-            Logout
-          </button>
         </div>
-      </div>
-      <div className="nav-menu-mobile">
-        <ul className="nav-menu-list-mobile">
-          <li className="nav-menu-item-mobile">
-            <Link to="/" className="nav-link">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-icon.png"
-                alt="nav home"
-                className="nav-bar-img"
-              />
-            </Link>
-          </li>
 
-          <li className="nav-menu-item-mobile">
-            <Link to="/cart" className="nav-link">
-              <img
-                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-cart-icon.png"
-                alt="nav cart"
-                className="nav-bar-img"
-              />
-            </Link>
-          </li>
-        </ul>
       </div>
     </nav>
   );

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -99,8 +101,8 @@ function App() {
             path="/"
             element={<Home halls={halls} updatedDates={updatedDates} />}
           />
-          <Route path="/about" element={<Login />} />
-          <Route path="/bookings" element={<Bookings />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/bookings" element={<Bookings />} />         
         </Routes>
       </BrowserRouter>
     </BookingDates.Provider>
