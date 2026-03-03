@@ -9,6 +9,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Bookings from "./components/Bookings";
 import BookingDates from "./components/Context";
 import About from "./components/About";
+import FunctionHallDetails from "./components/FunctionHallDetails";
+import Scrap from "./scrap";
+
 const function_halls = [
   {
     id: 1,
@@ -103,7 +106,9 @@ function App() {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
-          <Route path="/bookings" element={<Bookings />} />         
+          <Route path="/bookings" element={<Bookings />} /> 
+          <Route path="/hall/:id" element={<FunctionHallDetails/>}/>        
+  
         </Routes>
       </BrowserRouter>
     </BookingDates.Provider>

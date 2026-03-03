@@ -1,0 +1,40 @@
+/* Base link style */
+.custom-link {
+    color: #555555 !important;
+    font-weight: 400 !important;
+    position: relative;
+    transition: color 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+
+.custom-link:hover {
+    color: #0d6efd !important;
+}
+
+
+.custom-link::after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #0d6efd;
+    width: 0;
+    opacity: 0;
+    transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+
+.custom-link.active::after,
+.custom-link:hover::after {
+    width: 25px; 
+    opacity: 1;
+}
+
+
+.custom-link.active {
+    color: #0d6efd !important;
+}
