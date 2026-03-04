@@ -16,10 +16,10 @@ const SignUp = () => {
       return;
     }
 
-    setErrorMsg("");
-
     const userDetails = { username, password };
-    const url = "http://localhost:5000/users";
+
+    const url = "https://backend-signuplogin-bmh-2.onrender.com/user";
+
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -42,7 +42,7 @@ const SignUp = () => {
 
   return (
     <div className="container vh-100 d-flex justify-content-center align-items-center">
-      <div className="card p-4 col-sm-10 col-lg-4" >
+      <div className="card p-4 col-sm-10 col-lg-4">
         <h3 className="text-center mb-4">Sign Up</h3>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">

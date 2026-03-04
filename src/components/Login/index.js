@@ -8,7 +8,7 @@ const Login = (props) => {
   const [password, setPass] = useState("");
   const [showPass, setShow] = useState(false);
   const [feed, setFeed] = useState(false);
-  const [InvPass , setInv] =useState("")
+  const [InvPass, setInv] = useState("");
   const navigate = useNavigate();
   const onSign = () => {
     navigate("/signup");
@@ -24,30 +24,29 @@ const Login = (props) => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (username.length > 0) {
-      setFeed(false);
-    } else {
-      setFeed(true);
-    }
+
     const userDetails = { username, password };
-    const url = "http://localhost:5000/log";
+
+    const url = "https://backend-signuplogin-bmh-2.onrender.com/log";
+
     const options = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userDetails),
     };
+
     try {
       const response = await fetch(url, options);
       const data = await response.json();
+
       if (response.ok) {
         Cookies.set("jwt_token", data.jwt_token, { expires: 30 });
         navigate("/", { replace: true });
-        console.log(data.jwt_token)
-      }else{
-        setInv(data.message)
+      } else {
+        setInv(data.message);
       }
     } catch (error) {
-      console.log("Something went wrong. Try again.");
+      console.log("Something went wrong.");
     }
   };
   return (
@@ -102,11 +101,12 @@ const Login = (props) => {
               {feed && (
                 <p className="mt-1 text-danger text-center">Enter UserName</p>
               )}
-              {InvPass && <p className="mt-1 text-danger text-center">{InvPass}</p>}
+              {InvPass && (
+                <p className="mt-1 text-danger text-center">{InvPass}</p>
+              )}
             </div>
           </form>
           <div className="mt-2">
-     
             <button className="btn btn-primary mt-2 w-100" onClick={onSign}>
               Register
             </button>
