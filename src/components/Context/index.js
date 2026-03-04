@@ -1,8 +1,8 @@
 import React from 'react'
 
 const BookingDates = React.createContext({
-    bookedHalls : [],
-    setBookedHalls : ()=>{
+    halls : [],
+    setHalls : ()=>{
     },
     selectUniqueDate:""
    

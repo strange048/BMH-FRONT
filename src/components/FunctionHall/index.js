@@ -8,27 +8,8 @@ import { FaMapMarkerAlt, FaUsers, FaStar } from "react-icons/fa";
 const FunctionHall = (props) => {
   const { object, updatedDates } = props;
   const { image_url, name, address, hall_package, bookedDates, id } = object;
-  // const [selectDate, setVal] = useState("")
-  // const [dateList, setDate] = useState([])
 
-  // useEffect(() => {
-  //     setInterval(() => {
-  //         if (!payNow) {
-  //             setPayNow(true)
-  //         } else {
-  //             setPayNow(false)
-  //         }
-  //     }, 1500)
-  // }, [])
 
-  // const onSelectDate = (e) => {
-  //     setVal(e.target.value)
-  //     let dateSeleccted = e.target.value
-  //     const is_it_booked = dateList.includes(dateSeleccted)
-  //     if (!is_it_booked) {
-  //         setDate([...dateList, dateSeleccted])
-  //     }
-  // }
   return (
     <div className="container py-5">
       <div

@@ -53,6 +53,9 @@ const Navbar = () => {
             <li className="nav-item">
               <NavLink className="nav-link px-3 custom-link" to="/contact">Contact</NavLink>
             </li>
+               <li className="nav-item">
+              <NavLink className="nav-link px-3 custom-link" to="/bookings">My Bookings</NavLink>
+            </li>
             <li className="nav-item ms-lg-3">
               <button
                 className="btn btn-primary w-100 w-lg-auto mt-3 mt-lg-0 px-4"

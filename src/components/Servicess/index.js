@@ -2,10 +2,12 @@ import React from "react";
 import "./index.css";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const ServicePage = () => {
+  const navigate = useNavigate()
   const goToHome = () => {
-    window.location.href = "/";
+   navigate("/")
   };
 
   const services = [
